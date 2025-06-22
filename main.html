@@ -20,27 +20,36 @@
 			<div class="hidden" id="HSwrapper">
 				<label for="HSoption">Hatid-Sundo Package</label>
 				<select id="HSoption">
-					<option value="1">Hatid lang</option>
-					<option value="2">Hatid-Sundo</option>
+					<option value="2way">Hatid-Sundo(2-way roundtrip)</option>
+					<option value="1way">Hatid lang(1-way only)</option>
 				</select>
 				<div class="inline">
 					<label for="HSsameday">Same day ihahatid at susunduin?</label>
-					<input type="checkbox" id="HScheckbox"> 
+					<select name="" id="HSsameday">
+						<option value="yes">YES</option>
+						<option value="no">NO</option>
+					</select>
+
 				</div>						
 			</div>
 		
 			<label for="inputDistance">Total Distance:</label>
 				<input type="number" id="km">
-			<label for="inputDays">Total Days</label>
+				<div id="inputDays">
+					<label for="inputDays" >Total Days</label>
 			<select name="" id="days">
 				<option value="1">Daytour</option>
+				<option value="2">1d1n</option>
 				<option value="3">2d1n</option>
 				<option value="5">3d2n</option>
 				<option value="7">4d3n</option>	
 			</select>
+				</div>
+			
 
 			<button onclick="calculate()">Calculate</button>
 		</div>
 	</div>
+<script src="script.js"></script>
 </body>
 </html>
