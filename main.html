@@ -7,6 +7,40 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	
+	<div class="container">
+		<div class="wrapper">
+			<h1>Choose Options</h1>
+			<label for="selectService">Select Service option</label>
+			<select id="selectService">
+				<option value="p2p">POINT-TO-POINT</option>
+				<option value="hs">HATID-SUNDO</option>
+				<option value="hg">HAKOT-GAMIT</option>
+			</select>
+
+			<div class="hidden" id="HSwrapper">
+				<label for="HSoption">Hatid-Sundo Package</label>
+				<select id="HSoption">
+					<option value="1">Hatid lang</option>
+					<option value="2">Hatid-Sundo</option>
+				</select>
+				<div class="inline">
+					<label for="HSsameday">Same day ihahatid at susunduin?</label>
+					<input type="checkbox" id="HScheckbox"> 
+				</div>						
+			</div>
+		
+			<label for="inputDistance">Total Distance:</label>
+				<input type="number" id="km">
+			<label for="inputDays">Total Days</label>
+			<select name="" id="days">
+				<option value="1">Daytour</option>
+				<option value="3">2d1n</option>
+				<option value="5">3d2n</option>
+				<option value="7">4d3n</option>	
+			</select>
+
+			<button onclick="calculate()">Calculate</button>
+		</div>
+	</div>
 </body>
 </html>
