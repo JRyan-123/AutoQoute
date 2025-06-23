@@ -7,16 +7,22 @@ const inputDays = document.getElementById('inputDays');
 selectService.addEventListener('change' , function() {
 	if (this.value === "hs") {
 		HSwrapper.classList.remove("hidden");
+
 	}
 	else{
 		HSwrapper.classList.add("hidden");
 	}
+
+
 	if (this.value === "hg") {
 		inputDays.classList.add("hidden");
 	}
 	else{
 		inputDays.classList.remove("hidden");
 	}
+
+	//reset value
+	document.getElementById('result').innerText = "";
 });
 
 //option for HS if selected
@@ -33,7 +39,6 @@ HSoption.addEventListener("change", function() {
 });
 
 const km = document.getElementById('km');
-
 const days = document.getElementById('days');
 const div = 15;
 let result = "";
@@ -48,5 +53,12 @@ function calculate() {
 
 	}
 
+	else if (selectService.value === "hs") {
+
+	}
+	else{
+		const totalCharge = Math.max(1000, 500 + (km.value * 50));
+		result = `Result: ${totalCharge} and extra 500 for helper`;
+	}
 	document.getElementById('result').innerText = result;
 }
