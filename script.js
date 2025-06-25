@@ -3,6 +3,7 @@ const HSwrapper = document.getElementById('HSwrapper');
 const inputDays = document.getElementById('inputDays');
 
 
+
 //choose on select service option
 selectService.addEventListener('change' , function() {
 	if (this.value === "hs") {
@@ -14,7 +15,7 @@ selectService.addEventListener('change' , function() {
 	}
 
 
-	if (this.value === "hg") {
+	if (this.value === "hg" || this.value === "hs") {
 		inputDays.classList.add("hidden");
 	}
 	else{
@@ -25,51 +26,48 @@ selectService.addEventListener('change' , function() {
 	document.getElementById('result').innerText = "";
 });
 
-//option for HS if selected
-const HSoption = document.getElementById('HSoption');
-const inline = document.querySelector('.inline');
 
-HSoption.addEventListener("change", function() {
-	if (this.value === "1way") {
-		inline.classList.add("hidden");
-	}
-	else{
-		inline.classList.remove("hidden");
-	}
-});
 
 const km = document.getElementById('km');
 const days = document.getElementById('days');
 const div = 15;
 let result = "";
+const HSsameday = document.getElementById('HSsameday');
 
 
 function calculate() {
+
+	//catch empty or zero errors
 	if (!km.value || km.value === "0") {
 		alert("Invalid input: must be greater than 0.");
 		return; // Stop the function
 	}
+
+	//switch per service option chosen
 	switch(selectService.value){
 		case "p2p":
 			let xtraFee = 0;
 				const carCharge = 1000 + (days.value * 1000);
 				const driverFee = 500 + (days.value * 500);
 				const gasToll = Math.ceil(km.value / 25) * 500;
-
-				xtraFee += (Math.ceil((km.value-100)/100)*500);
+				xtraFee += (Math.ceil((km.value-149)/100)*250);
+				xtraFee += (Math.ceil((km.value-99)/100)*100);
 				xtraFee += (Math.ceil((km.value-63)/25)*250);
 
 				result = `Basepay: ${carCharge + driverFee + gasToll} and Extra fee of ${xtraFee}`;
 			break;
 		case "hs":
-			
-				const xtraFee1 = (Math.ceil((km.value-5)/8)*50);
-				totalCharge = 500 + ((km.value/100) * 3500);
-				result = `TotalFee: ${Math.max(1000,totalCharge + xtraFee1)} and extra 500 for helper` ;
+					//input 30 = disable sameday discount
+
+
+				const value = Number(HSsameday.value);
+				const sameday = value === 2 ? 0 : ((km.value) * 10) + 500 ;			
+				totalCharge = ((1000 + ((km.value) * 40))*2) - sameday ;
+				result = `TotalFee: ${Math.max(1000,totalCharge )} same day deduction ${sameday}` ;
 			break;
 		case "hg":
 			
-				totalCharge = 1000 + ((km.value-8) * 40);
+				totalCharge = 1000 + ((km.value) * 40);
 				result = `TotalFee: ${Math.max(1000,totalCharge )} and extra 500 for helper` ;
 			break;
 	}
