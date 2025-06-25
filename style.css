@@ -50,12 +50,10 @@ button:hover{
   	margin: 10px 0;
 }
 .inline label{
-	  flex: 0 0 250px; /* or adjust */
+	  flex: 1 0 150px;
 }
 .hidden{
 display: none;
 visibility: none;
 }
-.error{
-	
-}
+

@@ -59,7 +59,10 @@ function calculate() {
 		case "hs":
 					//input 30 = disable sameday discount
 
-
+				if (Number(km.value) >=30 && Number(HSsameday.value) === 1) {
+					alert("sameday discount is for 30 km under!");
+					HSsameday.value=2;
+				}
 				const value = Number(HSsameday.value);
 				const sameday = value === 2 ? 0 : ((km.value) * 10) + 500 ;			
 				totalCharge = ((1000 + ((km.value) * 40))*2) - sameday ;
