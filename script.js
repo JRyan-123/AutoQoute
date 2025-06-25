@@ -49,27 +49,31 @@ function calculate() {
 		alert("Invalid input: must be greater than 0.");
 		return; // Stop the function
 	}
-	if (selectService.value === "p2p") {
-		let xtraFee = 0;
-		const carCharge = 1000 + (days.value * 1000);
-		const driverFee = 500 + (days.value * 500);
-		const gasToll = Math.ceil(km.value / 25) * 500;
-		 xtraFee += (Math.floor((km.value)/100)*500);
-		 xtraFee += (Math.ceil((km.value-63)/25)*250);
+	switch(selectService.value){
+		case "p2p":
+			let xtraFee = 0;
+				const carCharge = 1000 + (days.value * 1000);
+				const driverFee = 500 + (days.value * 500);
+				const gasToll = Math.ceil(km.value / 25) * 500;
 
-		
-		result = `Basepay: ${carCharge + driverFee + gasToll} and Extra fee of ${xtraFee}`;
+				xtraFee += (Math.ceil((km.value-100)/100)*500);
+				xtraFee += (Math.ceil((km.value-63)/25)*250);
 
+				result = `Basepay: ${carCharge + driverFee + gasToll} and Extra fee of ${xtraFee}`;
+			break;
+		case "hs":
+			
+				const xtraFee1 = (Math.ceil((km.value-5)/8)*50);
+				totalCharge = 500 + ((km.value/100) * 3500);
+				result = `TotalFee: ${Math.max(1000,totalCharge + xtraFee1)} and extra 500 for helper` ;
+			break;
+		case "hg":
+			
+				totalCharge = 1000 + ((km.value-8) * 40);
+				result = `TotalFee: ${Math.max(1000,totalCharge )} and extra 500 for helper` ;
+			break;
 	}
 
-	else if (selectService.value === "hs") {
-		  
-	}
-	else{
-		let xtraFee = 0;
-		xtraFee += (Math.ceil((km.value-5)/8)*50);
-		totalCharge = 500 + ((km.value/100) * 3500);
-		result = `TotalFee: ${Math.max(1000,totalCharge + xtraFee)} and extra 500 for helper` ;
-	}
+	
 	document.getElementById('result').innerText = result;
 }
